@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background: #333;
+  padding: 10px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.page {
+  padding: 20px;
+}
+
+.footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
