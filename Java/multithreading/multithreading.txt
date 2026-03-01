@@ -1,0 +1,170 @@
+multithreading
+1)Synchronization Example
+class BankAccount {
+
+    private int balance;
+
+    // Constructor
+    public BankAccount(int balance) {
+        this.balance = balance;
+    }
+
+    // Synchronized withdraw method
+    public synchronized void withdraw(int amount) {
+
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount.");
+            return;
+        }
+
+        if (balance >= amount) {
+            System.out.println(Thread.currentThread().getName() +
+                    " is withdrawing " + amount);
+
+            balance -= amount;
+
+            System.out.println("Withdrawal of " + amount +
+                    " successful. Remaining balance: " + balance);
+        } else {
+            System.out.println("Insufficient balance for withdrawal of " + amount);
+        }
+    }
+}
+
+// Thread class
+class UserThread extends Thread {
+
+    private BankAccount account;
+    private int amount;
+
+    public UserThread(BankAccount account, int amount) {
+        this.account = account;
+        this.amount = amount;
+    }
+
+    public void run() {
+        account.withdraw(amount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Initial Balance
+        BankAccount account = new BankAccount(1000);
+
+        // Multiple withdrawal requests
+        UserThread t1 = new UserThread(account, 300);
+        UserThread t2 = new UserThread(account, 500);
+        UserThread t3 = new UserThread(account, 400);
+
+        // Start threads
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+1)abstract class
+import java.util.Scanner;
+
+// Abstract Class
+abstract class Media {
+
+    String title;
+    String creator;
+    int duration;
+
+    Scanner sc = new Scanner(System.in);
+
+    // Abstract method
+    abstract void printDetails();
+}
+
+// Book Class
+class Book extends Media {
+
+    int pages;
+
+    void printDetails() {
+        System.out.println("\nEntering Book Details...");
+        
+        System.out.print("Enter Book Title: ");
+        title = sc.nextLine();
+
+        System.out.print("Enter Author Name: ");
+        creator = sc.nextLine();
+
+        System.out.print("Enter Number of Pages: ");
+        pages = sc.nextInt();
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Book - Title: " + title +
+                ", Author: " + creator +
+                ", Pages: " + pages);
+    }
+}
+
+// Movie Class
+class Movie extends Media {
+
+    void printDetails() {
+        System.out.println("\nEntering Movie Details...");
+
+        System.out.print("Enter Movie Title: ");
+        title = sc.nextLine();
+
+        System.out.print("Enter Director Name: ");
+        creator = sc.nextLine();
+
+        System.out.print("Enter Duration (in minutes): ");
+        duration = sc.nextInt();
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Movie - Title: " + title +
+                ", Director: " + creator +
+                ", Duration: " + duration + " mins");
+    }
+}
+
+// Song Class
+class Song extends Media {
+
+    void printDetails() {
+        System.out.println("\nEntering Song Details...");
+
+        System.out.print("Enter Song Title: ");
+        title = sc.nextLine();
+
+        System.out.print("Enter Singer Name: ");
+        creator = sc.nextLine();
+
+        System.out.print("Enter Duration (in minutes): ");
+        duration = sc.nextInt();
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Song - Title: " + title +
+                ", Singer: " + creator +
+                ", Duration: " + duration + " mins");
+    }
+}
+
+// Main Class
+public class AbstractMediaDemo {
+
+    public static void main(String[] args) {
+
+        Media media;   // Base class reference
+
+        // Book
+        media = new Book();
+        media.printDetails();
+
+        // Movie
+        media = new Movie();
+        media.printDetails();
+
+        // Song
+        media = new Song();
+        media.printDetails();
+    }
+}
