@@ -1,0 +1,603 @@
+1) frequency of each number
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        int[] freq = new int[N + 1];
+
+        for (int i = 0; i < N; i++) {
+            int num = sc.nextInt();
+            freq[num]++;
+        }
+
+        for (int i = 1; i <= N; i++) {
+            System.out.println(i + ": " + freq[i]);
+        }
+
+        sc.close();
+    }
+}
+2) count discount number
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < N; i++) {
+            int num = sc.nextInt();
+            set.add(num);
+        }
+
+        System.out.println(set.size());
+
+        sc.close();
+    }
+}
+3)find maximum element
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        int max = sc.nextInt();  // first element
+
+        for (int i = 1; i < N; i++) {
+            int num = sc.nextInt();
+            if (num > max) {
+                max = num;
+            }
+        }
+
+        System.out.println(max);
+
+        sc.close();
+    }
+}
+4)sum of odd elements
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        int sum = 0;
+
+        for (int i = 0; i < N; i++) {
+            int num = sc.nextInt();
+            if (num % 2 != 0) {
+                sum += num;
+            }
+        }
+
+        System.out.println(sum);
+
+        sc.close();
+    }
+}
+5) find duplicate element
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int N = sc.nextInt();
+        int[] arr = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = i + 1; j < N; j++) {
+                if (arr[i] == arr[j]) {
+                    System.out.println(arr[i]);
+                    sc.close();
+                    return;
+                }
+            }
+        }
+
+        sc.close();
+    }
+}
+oops
+1)class and object
+import java.util.*;
+
+class Car {
+    String brand;
+    String model;
+    int year;
+
+    // Constructor
+    Car(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+
+    // Method to display details
+    void display() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Model: " + model);
+        System.out.println("Year: " + year);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String brand = sc.next();
+        String model = sc.next();
+        int year = sc.nextInt();
+
+        Car car = new Car(brand, model, year);
+        car.display();
+
+        sc.close();
+    }
+}
+2)encapsulation problem
+import java.util.*;
+
+class BankAccount {
+    private String accountNumber;
+    private int balance;
+
+    // Constructor
+    BankAccount(String accountNumber, int balance) {
+        this.accountNumber = accountNumber;
+        setBalance(balance);  // validation
+    }
+
+    // Setter with validation
+    public void setBalance(int balance) {
+        if (balance >= 0) {
+            this.balance = balance;
+        } else {
+            this.balance = 0;
+        }
+    }
+
+    // Getter methods
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String accountNumber = sc.next();
+        int balance = sc.nextInt();
+
+        BankAccount account = new BankAccount(accountNumber, balance);
+
+        System.out.println("Account Number: " + account.getAccountNumber() +
+                           "  Balance: " + account.getBalance());
+
+        sc.close();
+    }
+}
+4) inheritance problem
+class Animal {
+    void make_sound() {
+        System.out.println("Some sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void make_sound() {
+        System.out.println("Bark");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.make_sound();
+    }
+}
+exception handling
+1)arthimetic exception
+import java.util.Scanner;
+
+public class ArithmeticExceptionExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter numerator: ");
+            int num = sc.nextInt();
+
+            System.out.print("Enter denominator: ");
+            int den = sc.nextInt();
+
+            int result = num / den;
+            System.out.println("Result: " + result);
+
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Division by zero is not allowed.");
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+2)null point exception
+import java.util.Scanner;
+
+public class NullPointerExceptionExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter a string (or type null): ");
+            String text = sc.nextLine();
+
+            if (text.equals("null")) {
+                text = null;
+            }
+
+            System.out.println("Length: " + text.length());
+
+        } catch (NullPointerException e) {
+            System.out.println("Error: You cannot access methods on a null object.");
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+3)array outof bound
+import java.util.Scanner;
+
+public class ArrayIndexExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int[] numbers = {10, 20, 30};
+
+        try {
+            System.out.print("Enter index (0-2): ");
+            int index = sc.nextInt();
+
+            System.out.println("Value: " + numbers[index]);
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Invalid array index. Please enter between 0 and 2.");
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+4)number formatexception
+import java.util.Scanner;
+
+public class NumberFormatExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter a number: ");
+            String input = sc.nextLine();
+
+            int number = Integer.parseInt(input);
+            System.out.println("Converted Number: " + number);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number format. Please enter a valid integer.");
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+5)class castexception
+public class ClassCastExample {
+    public static void main(String[] args) {
+
+        try {
+            Object obj = "Hello";
+
+            Integer num = (Integer) obj;  // Incorrect casting
+            System.out.println(num);
+
+        } catch (ClassCastException e) {
+            System.out.println("Error: Cannot cast String to Integer.");
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+multithreading
+1)Synchronization Example
+class BankAccount {
+
+    private int balance;
+
+    // Constructor
+    public BankAccount(int balance) {
+        this.balance = balance;
+    }
+
+    // Synchronized withdraw method
+    public synchronized void withdraw(int amount) {
+
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount.");
+            return;
+        }
+
+        if (balance >= amount) {
+            System.out.println(Thread.currentThread().getName() +
+                    " is withdrawing " + amount);
+
+            balance -= amount;
+
+            System.out.println("Withdrawal of " + amount +
+                    " successful. Remaining balance: " + balance);
+        } else {
+            System.out.println("Insufficient balance for withdrawal of " + amount);
+        }
+    }
+}
+
+// Thread class
+class UserThread extends Thread {
+
+    private BankAccount account;
+    private int amount;
+
+    public UserThread(BankAccount account, int amount) {
+        this.account = account;
+        this.amount = amount;
+    }
+
+    public void run() {
+        account.withdraw(amount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Initial Balance
+        BankAccount account = new BankAccount(1000);
+
+        // Multiple withdrawal requests
+        UserThread t1 = new UserThread(account, 300);
+        UserThread t2 = new UserThread(account, 500);
+        UserThread t3 = new UserThread(account, 400);
+
+        // Start threads
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+abstract class
+1)import java.util.Scanner;
+
+// Abstract Class
+abstract class Media {
+
+    String title;
+    String creator;
+    int duration;
+
+    Scanner sc = new Scanner(System.in);
+
+    // Abstract method
+    abstract void printDetails();
+}
+
+// Book Class
+class Book extends Media {
+
+    int pages;
+
+    void printDetails() {
+        System.out.println("\nEntering Book Details...");
+        
+        System.out.print("Enter Book Title: ");
+        title = sc.nextLine();
+
+        System.out.print("Enter Author Name: ");
+        creator = sc.nextLine();
+
+        System.out.print("Enter Number of Pages: ");
+        pages = sc.nextInt();
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Book - Title: " + title +
+                ", Author: " + creator +
+                ", Pages: " + pages);
+    }
+}
+
+// Movie Class
+class Movie extends Media {
+
+    void printDetails() {
+        System.out.println("\nEntering Movie Details...");
+
+        System.out.print("Enter Movie Title: ");
+        title = sc.nextLine();
+
+        System.out.print("Enter Director Name: ");
+        creator = sc.nextLine();
+
+        System.out.print("Enter Duration (in minutes): ");
+        duration = sc.nextInt();
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Movie - Title: " + title +
+                ", Director: " + creator +
+                ", Duration: " + duration + " mins");
+    }
+}
+
+// Song Class
+class Song extends Media {
+
+    void printDetails() {
+        System.out.println("\nEntering Song Details...");
+
+        System.out.print("Enter Song Title: ");
+        title = sc.nextLine();
+
+        System.out.print("Enter Singer Name: ");
+        creator = sc.nextLine();
+
+        System.out.print("Enter Duration (in minutes): ");
+        duration = sc.nextInt();
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Song - Title: " + title +
+                ", Singer: " + creator +
+                ", Duration: " + duration + " mins");
+    }
+}
+
+// Main Class
+public class AbstractMediaDemo {
+
+    public static void main(String[] args) {
+
+        Media media;   // Base class reference
+
+        // Book
+        media = new Book();
+        media.printDetails();
+
+        // Movie
+        media = new Movie();
+        media.printDetails();
+
+        // Song
+        media = new Song();
+        media.printDetails();
+    }
+}
+interface
+1)// Interface
+interface RemoteControl {
+
+    void powerOn();
+    void powerOff();
+    void increaseVolume();
+    void decreaseVolume();
+}
+
+// TV Class
+class TV implements RemoteControl {
+
+    public void powerOn() {
+        System.out.println("TV is now ON.");
+    }
+
+    public void powerOff() {
+        System.out.println("TV is now OFF.");
+    }
+
+    public void increaseVolume() {
+        System.out.println("TV volume increased.");
+    }
+
+    public void decreaseVolume() {
+        System.out.println("TV volume decreased.");
+    }
+}
+
+// AC Class
+class AC implements RemoteControl {
+
+    public void powerOn() {
+        System.out.println("AC is now ON.");
+    }
+
+    public void powerOff() {
+        System.out.println("AC is now OFF.");
+    }
+
+    public void increaseVolume() {
+        System.out.println("AC cooling increased.");
+    }
+
+    public void decreaseVolume() {
+        System.out.println("AC cooling decreased.");
+    }
+}
+
+// Speaker Class
+class Speaker implements RemoteControl {
+
+    public void powerOn() {
+        System.out.println("Speaker is now ON.");
+    }
+
+    public void powerOff() {
+        System.out.println("Speaker is now OFF.");
+    }
+
+    public void increaseVolume() {
+        System.out.println("Speaker volume increased.");
+    }
+
+    public void decreaseVolume() {
+        System.out.println("Speaker volume decreased.");
+    }
+}
+
+// Main Class
+public class SmartDeviceDemo {
+
+    public static void main(String[] args) {
+
+        RemoteControl device;
+
+        // TV
+        System.out.println("=== TV Control ===");
+        device = new TV();
+        device.powerOn();
+        device.increaseVolume();
+        device.decreaseVolume();
+        device.powerOff();
+
+        System.out.println();
+
+        // AC
+        System.out.println("=== AC Control ===");
+        device = new AC();
+        device.powerOn();
+        device.increaseVolume();
+        device.decreaseVolume();
+        device.powerOff();
+
+        System.out.println();
+
+        // Speaker
+        System.out.println("=== Speaker Control ===");
+        device = new Speaker();
+        device.powerOn();
+        device.increaseVolume();
+        device.decreaseVolume();
+        device.powerOff();
+    }
+}
